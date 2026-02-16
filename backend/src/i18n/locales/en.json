@@ -1,0 +1,64 @@
+{
+  "auth": {
+    "loginSuccess": "Login successful",
+    "logoutSuccess": "Logged out successfully",
+    "registerSuccess": "Registration successful",
+    "invalidCredentials": "Invalid email or password",
+    "userNotFound": "User not found",
+    "userAlreadyExists": "This email is already registered",
+    "invalidEmail": "Please enter a valid email address",
+    "passwordTooShort": "Password must be at least 8 characters long",
+    "weakPassword": "Password is too weak. Include uppercase, lowercase, and numbers",
+    "tokenExpired": "Token has expired",
+    "tokenInvalid": "Invalid token",
+    "unauthorized": "Authentication required",
+    "forbidden": "You do not have permission to perform this action"
+  },
+  "user": {
+    "profileUpdated": "Profile updated successfully",
+    "profileUpdateFailed": "Failed to update profile",
+    "userDeleted": "User deleted successfully",
+    "userNotFound": "User not found"
+  },
+  "family": {
+    "memberAdded": "Family member added successfully",
+    "memberUpdated": "Family member updated successfully",
+    "memberDeleted": "Family member deleted successfully",
+    "treeNotFound": "Family tree not found",
+    "invalidRelationship": "Invalid relationship"
+  },
+  "timeline": {
+    "eventCreated": "Event created successfully",
+    "eventUpdated": "Event updated successfully",
+    "eventDeleted": "Event deleted successfully",
+    "eventNotFound": "Event not found"
+  },
+  "media": {
+    "uploadSuccess": "Media uploaded successfully",
+    "uploadFailed": "Media upload failed",
+    "fileTooLarge": "File is too large",
+    "invalidFileType": "Invalid file type"
+  },
+  "messaging": {
+    "messageSent": "Message sent successfully",
+    "messageFailed": "Failed to send message",
+    "messageNotFound": "Message not found"
+  },
+  "error": {
+    "internalError": "Internal server error occurred",
+    "validationError": "Validation error",
+    "notFound": "Not found",
+    "badRequest": "Bad request",
+    "conflict": "Conflict occurred",
+    "serverError": "Server error occurred"
+  },
+  "validation": {
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email address",
+    "passwordRequired": "Password is required",
+    "passwordTooShort": "Password must be at least 8 characters long",
+    "usernameRequired": "Username is required",
+    "firstNameRequired": "First name is required",
+    "lastNameRequired": "Last name is required"
+  }
+}

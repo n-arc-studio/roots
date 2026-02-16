@@ -62,7 +62,7 @@ const sampleMedia: MediaItem[] = [
 ]
 
 export default function MediaArchive() {
-  const [media, setMedia] = useState<MediaItem[]>(sampleMedia)
+  const [media] = useState<MediaItem[]>(sampleMedia)
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [searchQuery, setSearchQuery] = useState('')
   const [filterType, setFilterType] = useState<'all' | 'image' | 'video' | 'document'>('all')

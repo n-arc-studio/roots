@@ -1,0 +1,104 @@
+{
+  "common": {
+    "appName": "Roots",
+    "description": "Social network for future generations - Your family story continues",
+    "language": "Language",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back"
+  },
+  "nav": {
+    "home": "Home",
+    "familyTree": "Family Tree",
+    "timeline": "Timeline",
+    "profile": "Profile",
+    "messaging": "Messaging",
+    "mediaArchive": "Media Archive",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Sign Up"
+  },
+  "pages": {
+    "home": {
+      "tagline": "Family Memories for the Future",
+      "description": "With the power of blockchain and AI, preserve your family tree and memories forever. Continue weaving your family's history for future generations.",
+      "features": "Features",
+      "familyTree": "Family Tree"
+    },
+    "login": {
+      "title": "Login",
+      "subtitle": "Social Network for Future Generations",
+      "email": "Email Address",
+      "password": "Password",
+      "username": "Username",
+      "loginButton": "Login",
+      "registerButton": "Sign Up",
+      "registerLinkText": "Don't have an account? Sign up here",
+      "loginLinkText": "Already have an account? Log in here",
+      "rememberMe": "Remember password",
+      "resetPassword": "Forgot your password?"
+    },
+    "profile": {
+      "title": "Profile",
+      "personalInfo": "Personal Information",
+      "birthDate": "Birth Date",
+      "birthPlace": "Birth Place",
+      "biography": "Biography",
+      "occupation": "Occupation",
+      "spouse": "Spouse",
+      "children": "Children",
+      "parents": "Parents",
+      "relatives": "Relatives",
+      "backToTree": "Back to Family Tree",
+      "edit": "Edit",
+      "editProfile": "Edit Profile"
+    },
+    "familyTree": {
+      "title": "Family Tree",
+      "addMember": "Add Member",
+      "deleteMember": "Delete Member",
+      "editMember": "Edit Member",
+      "noData": "Data is not yet loaded"
+    },
+    "timeline": {
+      "title": "Timeline",
+      "events": "Events",
+      "addEvent": "Add Event",
+      "noEvents": "No events yet"
+    },
+    "messaging": {
+      "title": "Messaging",
+      "startConversation": "Start Conversation",
+      "noMessages": "No messages yet",
+      "sendMessage": "Send Message"
+    },
+    "mediaArchive": {
+      "title": "Media Archive",
+      "uploadMedia": "Upload Media",
+      "noMedia": "No media yet"
+    }
+  },
+  "auth": {
+    "loginSuccess": "Successfully logged in",
+    "logoutSuccess": "Logged out successfully",
+    "registerSuccess": "Successfully registered",
+    "invalidCredentials": "Incorrect email address or password",
+    "userNotFound": "User not found",
+    "emailAlreadyExists": "This email address is already in use",
+    "weakPassword": "Password is too weak",
+    "validationError": "There are errors in the input fields"
+  },
+  "validation": {
+    "emailRequired": "Email address is required",
+    "emailInvalid": "Please enter a valid email address",
+    "passwordRequired": "Password is required",
+    "passwordTooShort": "Password must be at least 8 characters long",
+    "usernameRequired": "Username is required",
+    "confirmPassword": "Passwords do not match"
+  }
+}

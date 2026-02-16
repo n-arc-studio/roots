@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogIn, UserPlus, Mail, Lock, User, TreePine } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useStore } from '../hooks/useStore';
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const login = useStore((state) => state.login);
+  const { t } = useTranslation();
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -69,9 +71,9 @@ export const LoginPage: React.FC = () => {
             <TreePine className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Roots
+            {t('common.appName')}
           </h1>
-          <p className="text-gray-600 mt-2">子孫へ送るSNS</p>
+          <p className="text-gray-600 mt-2">{t('pages.login.subtitle')}</p>
         </div>
 
         {/* Form Card */}
@@ -89,7 +91,7 @@ export const LoginPage: React.FC = () => {
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              ログイン
+              {t('pages.login.loginButton')}
             </button>
             <button
               onClick={() => {
@@ -102,7 +104,7 @@ export const LoginPage: React.FC = () => {
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              新規登録
+              {t('pages.login.registerButton')}
             </button>
           </div>
 
@@ -118,7 +120,7 @@ export const LoginPage: React.FC = () => {
             {!isLogin && (
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  ユーザー名
+                  {t('pages.login.username')}
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -139,7 +141,7 @@ export const LoginPage: React.FC = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                メールアドレス
+                {t('pages.login.email')}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -159,7 +161,7 @@ export const LoginPage: React.FC = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                パスワード
+                {t('pages.login.password')}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -177,7 +179,7 @@ export const LoginPage: React.FC = () => {
               </div>
               {!isLogin && (
                 <p className="mt-1 text-xs text-gray-500">
-                  8文字以上、大文字・小文字・数字を含む
+                  {t('validation.passwordTooShort')}
                 </p>
               )}
             </div>
@@ -186,10 +188,10 @@ export const LoginPage: React.FC = () => {
               <div className="flex items-center justify-between text-sm">
                 <label className="flex items-center">
                   <input type="checkbox" className="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
-                  <span className="ml-2 text-gray-600">ログイン状態を保持</span>
+                  <span className="ml-2 text-gray-600">{t('pages.login.rememberMe')}</span>
                 </label>
                 <a href="#" className="text-blue-600 hover:text-blue-700">
-                  パスワードを忘れた
+                  {t('pages.login.resetPassword')}
                 </a>
               </div>
             )}
@@ -200,18 +202,18 @@ export const LoginPage: React.FC = () => {
               className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
-                <span>処理中...</span>
+                <span>{t('common.loading')}</span>
               ) : (
                 <>
                   {isLogin ? (
                     <>
                       <LogIn className="w-5 h-5" />
-                      <span>ログイン</span>
+                      <span>{t('pages.login.loginButton')}</span>
                     </>
                   ) : (
                     <>
                       <UserPlus className="w-5 h-5" />
-                      <span>登録する</span>
+                      <span>{t('pages.login.registerButton')}</span>
                     </>
                   )}
                 </>

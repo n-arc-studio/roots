@@ -3,6 +3,7 @@ import { UserModel } from '../models/User';
 import { generateToken } from '../utils/jwt';
 import { validateEmail, validatePassword, validateUsername } from '../utils/validation';
 import { authenticate, AuthRequest } from '../middleware/auth';
+import { AppError } from '../middleware/errorHandler';
 
 const router = Router();
 
@@ -13,13 +14,11 @@ router.post('/register', async (req: Request, res: Response) => {
 
     // Validation
     if (!email || !password || !username) {
-      res.status(400).json({ error: 'メールアドレス、パスワード、ユーザー名は必須です' });
-      return;
+      throw new AppError(req.t('validation.emailRequired'), 400, 'validation.emailRequired');
     }
 
     if (!validateEmail(email)) {
-      res.status(400).json({ error: '有効なメールアドレスを入力してください' });
-      return;
+      throw new AppError(req.t('validation.emailInvalid'), 400, 'validation.emailInvalid');
     }
 
     const passwordValidation = validatePassword(password);
@@ -37,8 +36,7 @@ router.post('/register', async (req: Request, res: Response) => {
     // Check if email already exists
     const emailExists = await UserModel.emailExists(email);
     if (emailExists) {
-      res.status(409).json({ error: 'このメールアドレスは既に登録されています' });
-      return;
+      throw new AppError(req.t('auth.userAlreadyExists'), 409, 'auth.userAlreadyExists');
     }
 
     // Create user
@@ -134,6 +132,32 @@ router.get('/me', authenticate, async (req: AuthRequest, res: Response) => {
 // Verify token
 router.get('/verify', authenticate, async (req: AuthRequest, res: Response) => {
   res.json({ valid: true, user: req.user });
+});
+
+// Update language preference
+router.put('/language', authenticate, async (req: AuthRequest, res: Response) => {
+  try {
+    const { language } = req.body;
+
+    if (!language || !['en', 'ja'].includes(language)) {
+      throw new AppError(req.t('validation.emailRequired'), 400, 'validation.emailRequired');
+    }
+
+    if (!req.user) {
+      throw new AppError(req.t('auth.unauthorized'), 401, 'auth.unauthorized');
+    }
+
+    await UserModel.updateLanguagePreference(req.user.userId, language);
+
+    res.json({
+      success: true,
+      message: req.t('user.profileUpdated'),
+      language,
+    });
+  } catch (error) {
+    console.error('Update language error:', error);
+    throw error;
+  }
 });
 
 export default router;

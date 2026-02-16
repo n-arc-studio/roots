@@ -12,12 +12,14 @@ export interface User {
   last_login?: Date;
   email_verified: boolean;
   is_active: boolean;
+  language_preference: 'en' | 'ja';
 }
 
 export interface CreateUserInput {
   email: string;
   password: string;
   username: string;
+  language_preference?: 'en' | 'ja';
 }
 
 export interface UserResponse {
@@ -28,21 +30,22 @@ export interface UserResponse {
   created_at: Date;
   email_verified: boolean;
   is_active: boolean;
+  language_preference: 'en' | 'ja';
 }
 
 export class UserModel {
   static async create(input: CreateUserInput): Promise<UserResponse> {
-    const { email, password, username } = input;
+    const { email, password, username, language_preference = 'en' } = input;
     
     // Hash password
     const salt = await bcrypt.genSalt(10);
     const password_hash = await bcrypt.hash(password, salt);
 
     const result = await query(
-      `INSERT INTO users (email, password_hash, username) 
-       VALUES ($1, $2, $3) 
-       RETURNING id, email, username, avatar_url, created_at, email_verified`,
-      [email, password_hash, username]
+      `INSERT INTO users (email, password_hash, username, language_preference) 
+       VALUES ($1, $2, $3, $4) 
+       RETURNING id, email, username, avatar_url, created_at, email_verified, language_preference`,
+      [email, password_hash, username, language_preference]
     );
 
     return result.rows[0];
@@ -84,5 +87,12 @@ export class UserModel {
       [email]
     );
     return parseInt(result.rows[0].count) > 0;
+  }
+
+  static async updateLanguagePreference(userId: number, language: 'en' | 'ja'): Promise<void> {
+    await query(
+      'UPDATE users SET language_preference = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2',
+      [language, userId]
+    );
   }
 }

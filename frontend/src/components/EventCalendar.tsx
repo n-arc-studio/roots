@@ -50,7 +50,7 @@ const sampleEvents: Event[] = [
 ]
 
 export default function EventCalendar() {
-  const [events, setEvents] = useState<Event[]>(sampleEvents)
+  const [events] = useState<Event[]>(sampleEvents)
   const [showNewEvent, setShowNewEvent] = useState(false)
 
   const getEventColor = (type: string) => {

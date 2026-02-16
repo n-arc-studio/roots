@@ -1,0 +1,64 @@
+{
+  "auth": {
+    "loginSuccess": "ログインに成功しました",
+    "logoutSuccess": "ログアウトしました",
+    "registerSuccess": "登録に成功しました",
+    "invalidCredentials": "メールアドレスまたはパスワードが間違っています",
+    "userNotFound": "ユーザーが見つかりません",
+    "userAlreadyExists": "このメールアドレスは既に登録されています",
+    "invalidEmail": "有効なメールアドレスを入力してください",
+    "passwordTooShort": "パスワードは8文字以上である必要があります",
+    "weakPassword": "パスワードが弱すぎます。大文字、小文字、数字を含めてください",
+    "tokenExpired": "トークンが期限切れです",
+    "tokenInvalid": "トークンが無効です",
+    "unauthorized": "認証が必要です",
+    "forbidden": "このアクションを実行する権限がありません"
+  },
+  "user": {
+    "profileUpdated": "プロフィールが更新されました",
+    "profileUpdateFailed": "プロフィール更新に失敗しました",
+    "userDeleted": "ユーザーが削除されました",
+    "userNotFound": "ユーザーが見つかりません"
+  },
+  "family": {
+    "memberAdded": "家族メンバーが追加されました",
+    "memberUpdated": "家族メンバーが更新されました",
+    "memberDeleted": "家族メンバーが削除されました",
+    "treeNotFound": "家系図が見つかりません",
+    "invalidRelationship": "無効な関係です"
+  },
+  "timeline": {
+    "eventCreated": "イベントが作成されました",
+    "eventUpdated": "イベントが更新されました",
+    "eventDeleted": "イベントが削除されました",
+    "eventNotFound": "イベントが見つかりません"
+  },
+  "media": {
+    "uploadSuccess": "メディアがアップロードされました",
+    "uploadFailed": "メディアのアップロードに失敗しました",
+    "fileTooLarge": "ファイルが大きすぎます",
+    "invalidFileType": "無効なファイル形式です"
+  },
+  "messaging": {
+    "messageSent": "メッセージが送信されました",
+    "messageFailed": "メッセージの送信に失敗しました",
+    "messageNotFound": "メッセージが見つかりません"
+  },
+  "error": {
+    "internalError": "内部サーバーエラーが発生しました",
+    "validationError": "入力値のバリデーションエラーです",
+    "notFound": "見つかりません",
+    "badRequest": "不正なリクエストです",
+    "conflict": "競合が発生しました",
+    "serverError": "サーバーエラーが発生しました"
+  },
+  "validation": {
+    "emailRequired": "メールアドレスは必須です",
+    "emailInvalid": "有効なメールアドレスを入力してください",
+    "passwordRequired": "パスワードは必須です",
+    "passwordTooShort": "パスワードは8文字以上である必要があります",
+    "usernameRequired": "ユーザー名は必須です",
+    "firstNameRequired": "名は必須です",
+    "lastNameRequired": "姓は必須です"
+  }
+}

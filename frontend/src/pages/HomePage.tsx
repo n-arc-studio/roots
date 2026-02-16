@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom'
 import { TreePine, BookOpen, Sparkles, LogIn, UserPlus } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import FamilyTree from '../components/FamilyTree'
 
 console.log('HomePage.tsx is loading...')
 
 export default function HomePage() {
   console.log('HomePage component is rendering...')
+  const { t } = useTranslation()
   
   return (
     <div className="min-h-screen">
@@ -15,9 +17,9 @@ export default function HomePage() {
           <div>
             <h1 className="text-4xl font-bold flex items-center gap-3">
               <TreePine size={40} />
-              Roots
+              {t('common.appName')}
             </h1>
-            <p className="text-blue-100 mt-2">子孫へ送るSNS - 未来へつながる家族の物語</p>
+            <p className="text-blue-100 mt-2">{t('common.description')}</p>
           </div>
           <div className="flex gap-3">
             <Link 
@@ -25,7 +27,7 @@ export default function HomePage() {
               className="flex items-center gap-2 px-6 py-2 bg-white text-roots-primary rounded-lg font-medium hover:bg-blue-50 transition-colors"
             >
               <LogIn size={20} />
-              ログイン
+              {t('nav.login')}
             </Link>
           </div>
         </div>
@@ -35,11 +37,10 @@ export default function HomePage() {
       <section className="container mx-auto px-4 py-12">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-5xl font-bold bg-gradient-to-r from-roots-primary to-roots-secondary bg-clip-text text-transparent mb-6">
-            家族の記憶を未来へ
+            {t('pages.home.tagline')}
           </h2>
           <p className="text-xl text-gray-700 mb-8">
-            ブロックチェーンとAIの力で、あなたの家系図と思い出を永遠に保存。
-            子孫たちへ、家族の歴史を紡ぎ続けましょう。
+            {t('pages.home.description')}
           </p>
         </div>
       </section>
