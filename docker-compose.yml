@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: roots-postgres
+    environment:
+      POSTGRES_DB: roots
+      POSTGRES_USER: roots_user
+      POSTGRES_PASSWORD: roots_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - roots-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: roots-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - roots-network
+
+  ipfs:
+    image: ipfs/kubo:latest
+    container_name: roots-ipfs
+    ports:
+      - "4001:4001"
+      - "5001:5001"
+      - "8080:8080"
+    volumes:
+      - ipfs_data:/data/ipfs
+    networks:
+      - roots-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: roots-backend
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://roots_user:roots_password@postgres:5432/roots
+      REDIS_URL: redis://redis:6379
+      IPFS_URL: http://ipfs:5001
+    depends_on:
+      - postgres
+      - redis
+      - ipfs
+    networks:
+      - roots-network
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: roots-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    networks:
+      - roots-network
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+networks:
+  roots-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  ipfs_data:

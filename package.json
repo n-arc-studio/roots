@@ -1,0 +1,32 @@
+{
+  "name": "roots",
+  "version": "1.0.0",
+  "description": "子孫へ送るSNS - 家系図と家族の歴史を未来へ紡ぐプラットフォーム",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend",
+    "blockchain"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:backend": "npm run dev --workspace=backend",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces"
+  },
+  "keywords": [
+    "family-tree",
+    "genealogy",
+    "blockchain",
+    "ai",
+    "sns",
+    "legacy"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
