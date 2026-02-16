@@ -230,6 +230,54 @@ docker-compose down
 - `POST /api/ai/summarize` - 家族史を要約
 - `POST /api/ai/organize` - 思い出を整理
 
+## 🧪 テスト
+
+Rootsプロジェクトには包括的なユニットテストが含まれています。
+
+### バックエンドテスト (Jest)
+
+```bash
+cd backend
+
+# すべてのテストを実行
+npm test
+
+# ウォッチモードで実行
+npm run test:watch
+
+# カバレッジレポートを生成
+npm run test:coverage
+```
+
+### フロントエンドテスト (Vitest)
+
+```bash
+cd frontend
+
+# すべてのテストを実行
+npm test
+
+# UIモードで実行
+npm run test:ui
+
+# カバレッジレポートを生成
+npm run test:coverage
+```
+
+### テスト内容
+
+- **バックエンド**:
+  - JWT生成・検証テスト
+  - バリデーション関数テスト
+  - 認証APIエンドポイントテスト
+  
+- **フロントエンド**:
+  - 認証コンポーネントテスト
+  - ルート保護テスト
+  - 状態管理(Zustand)テスト
+
+詳細は [docs/TESTING.md](docs/TESTING.md) を参照してください。
+
 ## 🎨 デザインシステム
 
 ### カラーパレット

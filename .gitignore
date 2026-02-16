@@ -6,6 +6,9 @@ node_modules/
 # Testing
 coverage/
 *.log
+.vitest/
+test-results/
+junit.xml
 
 # Production
 dist/
