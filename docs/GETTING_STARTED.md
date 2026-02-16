@@ -53,7 +53,7 @@ cp .env.example .env
 
 \`\`\`env
 # データベース（Dockerを使用する場合はそのまま）
-DATABASE_URL=postgres://roots_user:roots_password@localhost:5432/roots
+DATABASE_URL=postgres://roots_user:roots_password@localhost:5433/roots
 
 # Redis（Dockerを使用する場合はそのまま）
 REDIS_URL=redis://localhost:6379

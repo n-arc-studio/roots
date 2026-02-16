@@ -39,7 +39,10 @@ export interface User {
   id: string
   email: string
   name: string
+  username: string
   profileImage?: string
+  avatar_url?: string
   walletAddress?: string
+  email_verified?: boolean
   createdAt: Date
 }

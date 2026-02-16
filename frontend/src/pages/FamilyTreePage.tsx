@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Home, MessageCircle, Calendar, Image, Clock } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Home, MessageCircle, Calendar, Image, Clock, LogOut, User } from 'lucide-react'
+import { useStore } from '../hooks/useStore'
 import FamilyTree from '../components/FamilyTree'
 import FamilyMessaging from '../components/FamilyMessaging'
 import MediaArchive from '../components/MediaArchive'
@@ -12,6 +13,14 @@ type Tab = 'tree' | 'messaging' | 'media' | 'events' | 'history'
 export default function FamilyTreePage() {
   const [activeTab, setActiveTab] = useState<Tab>('tree')
   const [editMode, setEditMode] = useState(false)
+  const navigate = useNavigate()
+  const currentUser = useStore((state) => state.currentUser)
+  const logout = useStore((state) => state.logout)
+
+  const handleLogout = () => {
+    logout()
+    navigate('/login')
+  }
 
   const handleAddPerson = (parentId: string) => {
     console.log('Add person to:', parentId)
@@ -39,7 +48,19 @@ export default function FamilyTreePage() {
               <span className="font-bold text-lg">Roots</span>
             </Link>
             <h1 className="text-2xl font-bold text-roots-dark">家族のダッシュボード</h1>
-            <div className="w-32"></div>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 text-gray-700">
+                <User size={20} />
+                <span className="font-medium">{currentUser?.username || 'ゲスト'}</span>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+              >
+                <LogOut size={20} />
+                ログアウト
+              </button>
+            </div>
           </div>
         </div>
       </header>

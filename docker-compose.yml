@@ -5,13 +5,19 @@ services:
     image: postgres:15-alpine
     container_name: roots-postgres
     environment:
-      POSTGRES_DB: roots
+      POSTGRES_DB: roots_db
       POSTGRES_USER: roots_user
       POSTGRES_PASSWORD: roots_password
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./backend/src/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U roots_user -d roots_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - roots-network
 
@@ -20,6 +26,11 @@ services:
     container_name: roots-redis
     ports:
       - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
     networks:
       - roots-network
 
@@ -38,31 +49,46 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: roots-backend
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: postgres://roots_user:roots_password@postgres:5432/roots
+      NODE_ENV: development
+      PORT: 3000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: roots_user
+      DB_PASSWORD: roots_password
+      DB_NAME: roots_db
       REDIS_URL: redis://redis:6379
       IPFS_URL: http://ipfs:5001
+      JWT_SECRET: ${JWT_SECRET:-development-secret-key-change-in-production}
+      JWT_EXPIRES_IN: 7d
+      FRONTEND_URL: http://localhost:5173
     depends_on:
-      - postgres
-      - redis
-      - ipfs
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      ipfs:
+        condition: service_started
     networks:
       - roots-network
     volumes:
       - ./backend:/app
       - /app/node_modules
+    command: npm run dev
 
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: roots-frontend
     ports:
       - "5173:5173"
+    environment:
+      VITE_API_URL: http://localhost:3000
     depends_on:
       - backend
     networks:
@@ -70,6 +96,7 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
+    command: npm run dev
 
 networks:
   roots-network:

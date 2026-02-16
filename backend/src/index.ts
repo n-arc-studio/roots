@@ -8,11 +8,19 @@ import personRoutes from './routes/personRoutes.js'
 import memoryRoutes from './routes/memoryRoutes.js'
 import authRoutes from './routes/authRoutes.js'
 import aiRoutes from './routes/aiRoutes.js'
+import pool from './db/index.js'
 
 dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT || 3000
+
+// Test database connection
+pool.query('SELECT NOW()').then((res) => {
+  console.log('✅ Database connected:', res.rows[0].now)
+}).catch((err) => {
+  console.error('❌ Database connection failed:', err)
+})
 
 // Middleware
 app.use(helmet())
@@ -25,7 +33,7 @@ app.use(express.json({ limit: '10mb' }))
 app.use(express.urlencoded({ extended: true }))
 
 // Health check
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() })
 })
 
